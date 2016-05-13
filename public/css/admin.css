@@ -1,0 +1,280 @@
+#app {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+.preloader-wrapper.x-small {
+    width: 22px;
+    height: 22px;
+}
+
+.btn-collumn {
+    width: 62px;
+}
+
+.btn-small {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.tablesorter-material .select-wrapper {
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.tablesorter-material .select-wrapper input.select-dropdown {
+    margin-bottom: 0;
+    width: 100px;
+
+}
+
+.filter-input {
+    background: #eee;
+}
+
+.img-responsive {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+
+.input-checkbox {
+    margin-bottom: 30px;
+}
+
+.col.input-checkbox label {
+    left: 0;
+}
+
+.input-html {
+    margin-top: 25px;
+    margin-bottom: 20px;
+}
+
+.input-html label, .input-html label.active {
+    font-size: 1rem;
+    transform: none;
+    margin-top: -35px;
+}
+
+.collection a.depth-1 {
+    padding: 10px 10px 10px 40px;
+}
+
+.collection a.depth-2 {
+    padding: 10px 10px 10px 60px;
+}
+
+.input-field small {
+    display: block;
+    text-align: center;
+    position: relative;
+    top: -10px;
+}
+
+.sortable-handle {
+    cursor: move;
+}
+
+/* categories */
+#jstree {
+    min-height: 400px;
+}
+
+.category-image {
+    display: inline-block;
+}
+
+.category-image img {
+    vertical-align: middle;
+}
+
+.no-items {
+    background: #eee;
+    padding: 50px 0;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.no-items::after {
+    content: "нет записей";
+}
+
+
+
+/* products */
+.products .collection span.badge {
+    min-width: inherit;
+    border-radius: 4px;
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* Dropzone.js                                                                */
+/* -------------------------------------------------------------------------- */
+.dropzone {
+    border: 2px dashed #80cbc4;
+    border-radius: 5px;
+}
+
+
+
+/* -------------------------------------------------------------------------- */
+/* CKEditor                                                                   */
+/* -------------------------------------------------------------------------- */
+input.cke_dialog_ui_input_text, input.cke_dialog_ui_input_password, textarea.cke_dialog_ui_input_textarea {
+    height: inherit;
+    font-size: inherit;
+    margin: auto;
+}
+
+select.cke_dialog_ui_input_select {
+    display: inherit;
+}
+
+
+
+/* -------------------------------------------------------------------------- */
+/* tablesorter                                                                */
+/* -------------------------------------------------------------------------- */
+.tablesorter-material {
+    width: 100%
+}
+
+.tablesorter-material tfoot td, .tablesorter-material tfoot th, .tablesorter-material thead td, .tablesorter-material thead th {
+    background-color: #fff;
+    /*background-color: #f9f9f9;*/
+}
+
+.tablesorter-material tfoot {
+    border-top: 1px solid #d0d0d0;
+}
+
+.tablesorter-material .tablesorter-header {
+    cursor: pointer
+}
+
+.tablesorter-material .tablesorter-header-inner {
+    /*position: relative;
+    padding: 4px 18px 4px 4px*/
+}
+
+.tablesorter-material .tablesorter-header i.tablesorter-icon {
+    /*font-size: 11px;*/
+    position: absolute;
+    right: 2px;
+    top: 50%;
+    margin-top: -7px;
+    width: 14px;
+    height: 14px;
+    background-repeat: no-repeat;
+    line-height: 14px;
+    display: inline-block
+}
+
+.tablesorter-material i.arrow_drop_up:after {
+    content: 'arrow_drop_up'
+}
+
+.tablesorter-material i.arrow_drop_down:after {
+    content: 'arrow_drop_down'
+}
+
+.tablesorter-material > tbody > tr.odd > td, .tablesorter-material > tbody > tr.tablesorter-hasChildRow.odd:hover ~ tr.tablesorter-hasChildRow.odd ~ .tablesorter-childRow.odd > td {
+    background-color: #f9f9f9
+}
+
+.tablesorter-material > tbody > tr.even:hover > td, .tablesorter-material > tbody > tr.hover > td, .tablesorter-material > tbody > tr.odd:hover > td, .tablesorter-material > tbody > tr.tablesorter-hasChildRow.even:hover ~ .tablesorter-childRow.even > td, .tablesorter-material > tbody > tr.tablesorter-hasChildRow.odd:hover ~ .tablesorter-childRow.odd > td {
+    background-color: #f5f5f5
+}
+
+.caption, .tablesorter-material > tbody > tr.even > td, .tablesorter-material > tbody > tr.tablesorter-hasChildRow.even:hover ~ tr.tablesorter-hasChildRow.even ~ .tablesorter-childRow.even > td {
+    background-color: #fff
+}
+
+.tablesorter-material .tablesorter-processing {
+    background-image: url(data:image/gif;base64,R0lGODlhFAAUAKEAAO7u7lpaWgAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQBCgACACwAAAAAFAAUAAACQZRvoIDtu1wLQUAlqKTVxqwhXIiBnDg6Y4eyx4lKW5XK7wrLeK3vbq8J2W4T4e1nMhpWrZCTt3xKZ8kgsggdJmUFACH5BAEKAAIALAcAAAALAAcAAAIUVB6ii7jajgCAuUmtovxtXnmdUAAAIfkEAQoAAgAsDQACAAcACwAAAhRUIpmHy/3gUVQAQO9NetuugCFWAAAh+QQBCgACACwNAAcABwALAAACE5QVcZjKbVo6ck2AF95m5/6BSwEAIfkEAQoAAgAsBwANAAsABwAAAhOUH3kr6QaAcSrGWe1VQl+mMUIBACH5BAEKAAIALAIADQALAAcAAAIUlICmh7ncTAgqijkruDiv7n2YUAAAIfkEAQoAAgAsAAAHAAcACwAAAhQUIGmHyedehIoqFXLKfPOAaZdWAAAh+QQFCgACACwAAAIABwALAAACFJQFcJiXb15zLYRl7cla8OtlGGgUADs=);
+    background-position: center center !important;
+    background-repeat: no-repeat !important
+}
+
+.tablesorter-material .tablesorter-filter-row input.tablesorter-filter, .tablesorter-material .tablesorter-filter-row select.tablesorter-filter {
+    background-color: #fff;
+    border-bottom: none;
+    width: 98%;
+    margin: 0;
+    padding: 4px 6px;
+    color: #333;
+    /*height: 2rem;*/
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: height .1s ease;
+    -moz-transition: height .1s ease;
+    -o-transition: height .1s ease;
+    transition: height .1s ease
+}
+
+.tablesorter-material .tablesorter-filter-row .tablesorter-filter.disabled {
+    display: none;
+}
+
+.tablesorter-material .tablesorter-filter-row {
+    background-color: #efefef
+}
+
+.tablesorter-material .tablesorter-filter-row td {
+    background-color: #efefef;
+    line-height: normal;
+    text-align: center;
+    padding: 5px 6px;
+    vertical-align: middle;
+    -webkit-transition: line-height .1s ease;
+    -moz-transition: line-height .1s ease;
+    -o-transition: line-height .1s ease;
+    transition: line-height .1s ease
+}
+
+.tablesorter-material .tablesorter-filter-row.hideme td {
+    margin: 0;
+    line-height: 0
+}
+
+.tablesorter-material .tablesorter-filter-row.hideme * {
+    height: 1px;
+    min-height: 0;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+    filter: alpha(opacity=0)
+}
+
+.tablesorter .filtered {
+    display: none
+}
+
+.tablesorter-material .tablesorter-pager select {
+    padding: 4px 6px
+}
+
+.tablesorter-material .tablesorter-pager .pagedisplay {
+    border: 0;
+    margin: 0 15px;
+}
+
+.tablesorter-material tfoot i {
+
+}
+
+.tablesorter .tablesorter-errorRow td {
+    text-align: center;
+    cursor: pointer;
+    background-color: #e6bf99
+}

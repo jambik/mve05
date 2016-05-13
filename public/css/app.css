@@ -1,0 +1,123 @@
+nav .avatar {
+    width: 50px;
+    height: 50px;
+}
+
+#dropdownUser { padding: 8px 12px; }
+
+header {
+    margin: 23px 0 0 0;
+}
+
+#slides {
+    margin: 23px 0 0 0;
+}
+#slides .carousel-caption { padding-left: 30px; padding-right: 30px; padding-top: 0; background: rgba(0, 0, 0, 0.3); }
+
+#blocks {
+    margin: 23px 0 0 0;
+}
+
+#main { margin: 23px 0 0 0; }
+
+.products-tiles {  }
+.products-tiles .product-tile { margin: 0 0 30px 0; }
+.products-tiles .img { margin: 0 0 15px 0; }
+.products-tiles .img img { width: 100%; cursor: zoom-in; }
+.products-tiles .name { margin: 0 0 5px 0; text-align: center; font-size: 20px; height: 52px; line-height: 26px; overflow: hidden; }
+.products-tiles .price { margin: 0 0 15px 0; text-align: center; font-size: 14px; }
+.products-tiles .price span { color: #c36000; font-weight: 700; }
+.products-tiles .more { margin: 0 0 10px 0; }
+
+.products-list {  }
+.products-list .product-list { border-bottom: 1px solid #ddd; margin: 0 0 30px 0; padding: 0 0 30px 0; }
+.products-list .img { float: left; width: 20%; }
+.products-list .img img { width: 100%; cursor: zoom-in; }
+.products-list .info { float: left; width: 80%; padding: 0 0 0 20px; }
+.products-list .name { margin: 0 0 10px 0; font-size: 20px; text-transform: uppercase; }
+.products-list .price { margin: 0 0 15px 0; font-size: 14px; }
+.products-list .price span { color: #c36000; font-weight: 700; }
+
+.product { margin: 0 0 50px 0; }
+.product .images {}
+.product .img { margin: 0 0 20px 0; }
+.product .info {}
+.product .property {}
+.product .price-calculate { background: #ff7920; color: #fff; margin: 0 0 10px 0; }
+.product .price { font-size: 30px; float: left; text-align: center; width: 70%; padding: 20px 0; }
+.product .add-cart { float: right; width: 28%; text-align: center; padding: 20px 0; }
+.product .add-cart i { font-size: 200%; margin: 0 0 7px 0; }
+.product .add-cart a { color: #fff; }
+.product .add-cart span { display: block; line-height: 14px; }
+.product .photos { margin: 0 0 20px 0; }
+.product .photo { max-width: 100px; border: 1px solid #eee; }
+
+.categories-list { }
+.categories-list .category { margin: 0 0 20px 0; }
+.categories-list .category:hover { background: #eee; }
+.categories-list .img { text-align: center; }
+.categories-list .img img { margin: 0 auto; }
+.categories-list .name { font-size: 150%; height: 80px; overflow: hidden; text-align: center; text-transform: uppercase; }
+
+.categories-list-line { margin: 0 0 20px 0; }
+
+.news-list { }
+.news-list .media { border-bottom: 1px solid #ddd; padding-bottom: 15px; }
+.news-list .media:last-child { border-bottom: none; }
+.news-list img { max-width: 120px; }
+.news-list .name { font-size: 150%; }
+.news-date { font-size: 90%; color: #555; margin: 30px 0; }
+
+.articles-list { }
+.articles-list .item { border-bottom: 1px solid #ddd; padding: 15px 0; }
+.articles-list .item:last-child { border-bottom: none; }
+.articles-list .name { font-size: 150%; }
+
+.galleries-list { }
+.galleries-list .item { border-bottom: 1px solid #ddd; padding: 15px 0; }
+.galleries-list .item:last-child { border-bottom: none; }
+.galleries-list .name { font-size: 150%; }
+
+footer { background: #eee; margin: 100px 0 0 0; }
+footer .copyright { padding: 20px 0; }
+footer ul { margin: 30px 0; padding: 0; list-style: none; }
+footer li { display: inline-block; margin: 0 20px 0 0; }
+
+.no-items {
+    background: #eee;
+    padding: 50px 0;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.avatar-view img { max-width: 200px; max-height: 200px; }
+.avatar-wrapper { height: 300px; width: 100%; margin-top: 15px; box-shadow: inset 0 0 5px rgba(0,0,0,.25); background-color: #fcfcfc; overflow: hidden; }
+.avatar-wrapper img { display: block; height: auto; max-width: 100%; }
+.avatar-preview { margin-top: 15px; border: 1px solid #eee; border-radius: 4px; background-color: #fff; overflow: hidden; }
+.avatar-preview:hover { border-color: #ccf; box-shadow: 0 0 5px rgba(0,0,0,.15); }
+.avatar-preview img { width: 100%; }
+.preview-lg { height: 164px; width: 164px; margin-top: 15px; }
+.preview-md { height: 100px; width: 100px; }
+.preview-sm { height: 50px; width: 50px; }
+
+/* -------------------- Responsive classes ------------------- */
+
+/* mobile small - less than 480 */
+@media (max-width: 479px) {
+
+}
+
+/* mobile - 480 and up */
+@media (min-width: 480px) and (max-width: 767px) {
+
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991px) {
+
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199px) {
+
+}
