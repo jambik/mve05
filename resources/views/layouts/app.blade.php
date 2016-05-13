@@ -40,13 +40,7 @@
         </div>
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="nav navbar-nav">
-                <li><a href="{{ route('page.show', 'o-kompanii') }}">О компании</a></li>
-                <li><a href="{{ route('page.show', 'kontakty') }}">Контакты</a></li>
-                <li><a href="{{ route('catalog') }}">Каталог</a></li>
-                <li><a href="{{ route('articles') }}">Статьи</a></li>
-                <li><a href="{{ route('news') }}">Новости</a></li>
-                <li><a href="{{ route('galleries') }}">Фотогалерея</a></li>
-                <li><a href="{{ route('feedback') }}">Обратная связь</a></li>
+                <li><a href="/">Главная</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 @if (Auth::check())
@@ -56,7 +50,7 @@
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownUser">
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ route('profile.personal') }}"><i class="fa fa-user"></i> Личный кабинет</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#{{ Auth::user()->name }}"><i class="fa fa-user"></i> Личный кабинет</a></li>
                             <li class="divider"></li>
                             <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ url('logout') }}"><i class="fa fa-sign-out"></i> Выход</a></li>
                         </ul>
@@ -70,66 +64,11 @@
     </div>
 </nav>
 
-<header>
-    <div class="container">
-        <div class="row">
-            @include('partials._status')
-            @include('partials._errors')
-        </div>
-        <div class="row">
-            <div class="col-sm-4">
-                <div>Телефон: {{ $settings->phone }}</div>
-                <div>Email: {{ $settings->email }}</div>
-            </div>
-            <div class="col-sm-4 text-center">
-                <div class="lead">
-                    <a href="#" data-toggle="modal" data-target="#callbackModal"><i class="fa fa-volume-control-phone" aria-hidden="true"></i> Обратный звонок</a>
-                </div>
-            </div>
-            <div class="col-sm-4 text-right">
-                <form action="{{ route('search') }}" method="GET" class="inline-form">
-                    <div class="input-group">
-                        <input type="text" name="search" class="form-control input-sm" placeholder="Поиск по сайту">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default btn-sm" type="button">Go!</button>
-                        </span>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</header>
-
-@yield('slides')
-
-<section id="blocks">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="jumbotron text-center lead">
-                    Блок 1
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="jumbotron text-center lead">
-                    Блок 2
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="jumbotron text-center lead">
-                    Блок 3
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
 <section id="main">
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-md-4">
-                <p class="lead">Каталог</p>
-                @include('partials._categories')
+                menu
             </div>
             <div class="col-lg-9 col-md-8">
                 @yield('content')
@@ -138,29 +77,7 @@
     </div>
 </section>
 
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="copyright">копирайт</div>
-        </div>
-        <div class="row">
-            <ul>
-                <li><a href="{{ route('index') }}">Главная</a></li>
-                <li><a href="{{ route('page.show', 'o-kompanii') }}">О компании</a></li>
-                <li><a href="{{ route('page.show', 'kontakty') }}">Контакты</a></li>
-                <li><a href="{{ route('catalog') }}">Каталог</a></li>
-                <li><a href="{{ route('articles') }}">Статьи</a></li>
-                <li><a href="{{ route('news') }}">Новости</a></li>
-                <li><a href="{{ route('galleries') }}">Фотогалерея</a></li>
-                <li><a href="{{ route('feedback') }}">Обратная связь</a></li>
-            </ul>
-        </div>
-    </div>
-</footer>
-
-@include('partials._callback')
 @include('partials._flash')
-@include('partials._metrika')
 
 @yield('footer_scripts')
 

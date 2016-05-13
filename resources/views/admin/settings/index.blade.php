@@ -15,7 +15,7 @@
                     {!! Form::text('phone', null, ['class' => 'validate']) !!}
                 </div>
 
-                <div class="input-field col s12 input-html">
+                <div class="input-field col s12">
                     {!! Form::label('description', 'Описание сайта') !!}
                     {!! Form::textarea('description', null, ['class' => 'materialize-textarea validate']) !!}
                 </div>
@@ -32,8 +32,4 @@
             {!! Form::close() !!}
         </div>
     </div>
-@endsection
-
-@section('head_scripts')
-    <script src="/library/ckeditor/ckeditor.js"></script>
 @endsection

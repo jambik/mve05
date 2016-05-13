@@ -8,7 +8,7 @@ class UsersTableSeeder extends Seeder
 {
     protected $items = [
 
-        [1, 'Джанбулат Магомаев', 'jambik@gmail.com', ''],
+        [1, 'Джанбулат Магомаев', 'jambik@gmail.com'],
 
     ];
 
@@ -25,7 +25,7 @@ class UsersTableSeeder extends Seeder
         $admin->description  = ''; // optional
         $admin->save();
 
-        $row1 = array_combine(['id', 'name', 'email', 'image'], $this->items[0]) + ['password' => bcrypt('111111')];
+        $row1 = array_combine(['id', 'name', 'email'], $this->items[0]) + ['password' => bcrypt('111111'), 'api_token' => str_random(60)];
         $user1 = User::create($row1);
 
         $user1->attachRole($admin);

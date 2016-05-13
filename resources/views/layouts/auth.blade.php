@@ -30,7 +30,6 @@
 @yield('content')
 
 @include('partials._flash')
-@include('partials._metrika')
 
 @yield('footer_scripts')
 
