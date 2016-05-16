@@ -32,6 +32,7 @@ elixir(function(mix) {
         'bower_components/bootstrap/fonts',
         'bower_components/font-awesome/fonts/*.*',
     ], 'public/fonts');
+    //mix.copy('node_modules/swagger-ui/dist', 'public/apidocs');
 
 
     /* Admin files */

@@ -5,8 +5,11 @@ Route::group(['prefix' => 'api'], function ()
 {
     Route::group(['prefix' => 'v1'], function ()
     {
+        ## Documentation
+        Route::get('docs', ['as' => 'api.docs', 'uses' =>'Api\DocumentationController@show']);
+
         ## Authentication
-        Route::get('auth', ['as' => 'api.auth', 'uses' =>'Api\AuthController@getToken']);
+        Route::get('auth', ['as' => 'api.auth', 'uses' =>'Api\AuthController@authorizeAndGetToken']);
 
         Route::group(['middleware' => 'auth:api'], function ()
         {
