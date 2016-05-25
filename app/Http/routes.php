@@ -11,12 +11,10 @@ Route::group(['prefix' => 'api'], function ()
         ## Authentication
         Route::get('auth', ['as' => 'api.auth', 'uses' =>'Api\AuthController@authorizeAndGetToken']);
 
-        ## Upload fuel tickets file
-        Route::post('fuel_tickets', ['as' => 'api.fuel_tickets.upload', 'uses' =>'Api\FuelTicketController@uploadFuelTicketsFile']);
-
         Route::group(['middleware' => 'auth:api'], function ()
         {
-
+            ## Upload fuel tickets file
+            Route::post('fuel_tickets', ['as' => 'api.fuel_tickets.upload', 'uses' =>'Api\FuelTicketController@uploadFuelTicketsFile']);
         });
     });
 });
@@ -42,11 +40,21 @@ Route::group(['prefix' => 'admin'], function()
         ## Users
         Route::resource('users', 'Admin\UsersController');
 
+        ## Fuel tickets
+        Route::resource('fuel_tickets', 'Admin\FuelTicketsController');
+
+        ## Fuel tickets
+        Route::resource('fuel_files', 'Admin\FuelFilesController');
+
+        ## Users 1C
+        Route::resource('users1c', 'Admin\Users1cController');
+
         ## Administrators
         Route::resource('administrators', 'Admin\AdministratorsController');
 
         ## Import Fuel Tickets
-        Route::get('fuel_tickets/form', ['as' => 'admin.fuel_tickets.form', 'uses' =>'Admin\FuelTicketController@showForm']);
+        Route::get('fuel_tickets_upload', ['as' => 'admin.fuel_tickets_upload.show', 'uses' =>'Admin\FuelTicketsUploadController@show']);
+        Route::post('fuel_tickets_upload', ['as' => 'admin.fuel_tickets_upload.upload', 'uses' =>'Admin\FuelTicketsUploadController@upload']);
     });
 });
 

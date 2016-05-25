@@ -1,9 +1,9 @@
 <ul class="collection with-header">
     <li class="collection-header"><strong>Топливные талоны</strong></li>
-    <a class="collection-item" href="#"><i class="material-icons left">credit_card</i>Талоны</a>
-    <a class="collection-item" href="{{ route('admin.fuel_tickets.form') }}"><i class="material-icons left">file_upload</i>Загрузить талоны</a>
-    <a class="collection-item" href="#"><i class="material-icons left">history</i>История загрузок</a>
-    <a class="collection-item" href="#"><i class="material-icons left">account_box</i>Пользователи (1С)</a>
+    <a class="collection-item" href="{{ route('admin.fuel_tickets.index') }}"><i class="material-icons left">credit_card</i>Талоны</a>
+    <a class="collection-item" href="{{ route('admin.fuel_tickets_upload.show') }}"><i class="material-icons left">file_upload</i>Загрузить талоны</a>
+    <a class="collection-item" href="{{ route('admin.fuel_files.index') }}"><i class="material-icons left">history</i>История загрузок</a>
+    <a class="collection-item" href="{{ route('admin.users1c.index') }}"><i class="material-icons left">account_box</i>Пользователи (1С)</a>
 </ul>
 
 <ul class="collection with-header">

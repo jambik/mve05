@@ -59,7 +59,7 @@ class AuthController extends ApiController
     {
         $this->validate($request, [
             'email' => 'required|email',
-            'password' => 'password',
+            'password' => 'required',
         ]);
 
         if (Auth::attempt($request->all())) {
