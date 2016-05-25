@@ -28,7 +28,12 @@ class User extends Authenticatable
 
     protected $table = 'users';
 
-    protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = ['name', 'email', 'password', 'api_token'];
 
     protected $hidden = ['id', 'password', 'remember_token', 'created_at', 'updated_at', 'api_token'];
+
+    public function fuelFiles()
+    {
+        return $this->hasMany('App\FuelFile');
+    }
 }

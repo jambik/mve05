@@ -14,8 +14,6 @@
     @if (isset($item))<small>Если оставить пароль пустым, то он не изменится</small>@endif
 </div>
 
-@include('admin.partials._imageable')
-
 <div class="input-field col s12 center">
     <button type="submit" class="btn-large waves-effect waves-light"><i class="material-icons left">check_circle</i> {{ $submitButtonText }}</button>
 </div>

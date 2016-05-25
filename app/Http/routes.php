@@ -11,9 +11,12 @@ Route::group(['prefix' => 'api'], function ()
         ## Authentication
         Route::get('auth', ['as' => 'api.auth', 'uses' =>'Api\AuthController@authorizeAndGetToken']);
 
+        ## Upload fuel tickets file
+        Route::post('fuel_tickets', ['as' => 'api.fuel_tickets.upload', 'uses' =>'Api\FuelTicketController@uploadFuelTicketsFile']);
+
         Route::group(['middleware' => 'auth:api'], function ()
         {
-            Route::get('/secret', 'Api\SecretController@getSecret');
+
         });
     });
 });
@@ -41,6 +44,9 @@ Route::group(['prefix' => 'admin'], function()
 
         ## Administrators
         Route::resource('administrators', 'Admin\AdministratorsController');
+
+        ## Import Fuel Tickets
+        Route::get('fuel_tickets/form', ['as' => 'admin.fuel_tickets.form', 'uses' =>'Admin\FuelTicketController@showForm']);
     });
 });
 

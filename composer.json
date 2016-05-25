@@ -24,7 +24,8 @@
         "barryvdh/laravel-debugbar": "^2.2",
         "caouecs/laravel-lang": "^3.0",
         "snowfire/beautymail": "dev-master",
-        "zircote/swagger-php": "^2.0"
+        "zircote/swagger-php": "^2.0",
+        "maatwebsite/excel": "^2.1"
     },
     "autoload": {
         "classmap": [

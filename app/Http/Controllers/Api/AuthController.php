@@ -57,6 +57,11 @@ class AuthController extends ApiController
      */
     public function authorizeAndGetToken(Request $request)
     {
+        $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'password',
+        ]);
+
         if (Auth::attempt($request->all())) {
             return response()->json(['api_token' => Auth::user()->api_token, 'user' => Auth::user()]);
         }

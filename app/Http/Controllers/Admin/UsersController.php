@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\BackendController;
 use App\User;
-use DB;
 use Illuminate\Http\Request;
 
 class UsersController extends BackendController
@@ -56,7 +55,7 @@ class UsersController extends BackendController
             'password' => 'required|min:6'
         ]);
 
-        $this->model->create($request->except('password') + ['password' => bcrypt($request->input('password'))]);
+        $this->model->create($request->except('password') + ['password' => bcrypt($request->input('password')), 'api_token' => str_random(60)]);
 
         return redirect(route('admin.'.$this->resourceName.'.index'));
     }
