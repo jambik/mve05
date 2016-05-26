@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\ApiController;
-use Auth;
-use Illuminate\Http\Request;
 
 use App\Http\Requests;
 

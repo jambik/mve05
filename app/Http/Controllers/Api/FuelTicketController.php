@@ -5,27 +5,76 @@ namespace App\Http\Controllers\Api;
 use App\FuelFile;
 use App\FuelTicket;
 use App\Http\Controllers\ApiController;
+use App\Http\Requests;
 use App\Services\FuelFileService;
+use Illuminate\Http\Request;
 use Auth;
 use Excel;
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
 use Validator;
 
 class FuelTicketController extends ApiController
 {
     protected $validator;
 
+    /**
+     * @param Request $request
+     * @return Response
+     *
+     * @SWG\Post(
+     *     path="/fuel_tickets",
+     *     summary="Загрузка топливных талонов",
+     *     tags={"Загрузка топливных талонов"},
+     *     description="Загрузка файла топливных талонов в формате CSV",
+     *     produces={"application/json"},
+     *     @SWG\Parameter(
+     *          name="api_token",
+     *          description="API Token",
+     *          type="string",
+     *          required=true,
+     *          in="query"
+     *      ),
+     *     @SWG\Parameter(
+     *          name="file",
+     *          description="Файл топливных талонов в формате CSV",
+     *          type="file",
+     *          required=true,
+     *          in="formData"
+     *     ),
+     *     @SWG\Response(
+     *         response=200,
+     *         description="Файл успешно импортирован",
+     *         @SWG\Schema(
+     *             type="object",
+     *             @SWG\Property(
+     *                 property="status",
+     *                 type="string"
+     *             ),
+     *             @SWG\Property(
+     *                 property="message",
+     *                 type="string"
+     *             ),
+     *             @SWG\Property(
+     *                 property="payload",
+     *                 type="object"
+     *             )
+     *         )
+     *     ),
+     *     @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized"
+     *     ),
+     *     @SWG\Response(
+     *          response=422,
+     *          description="Unprocessable Entity"
+     *     ),
+     * )
+     */
     public function uploadFuelTicketsFile(Request $request)
     {
         $fuelFileManager = new FuelFileService();
 
         if ( ! $this->validateFile($request)) {
-            return response()->json([
-                'status' => 'error',
-                'errors' => $this->validator->errors(),
-            ]);
+            return response()->json($this->validator->errors(), 422);
         }
 
         $uploadedFile = $fuelFileManager->uploadFile($request->file('file'));

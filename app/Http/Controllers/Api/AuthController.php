@@ -52,7 +52,11 @@ class AuthController extends ApiController
      *     @SWG\Response(
      *          response=401,
      *          description="Unauthorized"
-     *      ),
+     *     ),
+     *     @SWG\Response(
+     *          response=422,
+     *          description="Unprocessable Entity"
+     *     ),
      * )
      */
     public function authorizeAndGetToken(Request $request)

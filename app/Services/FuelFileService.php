@@ -3,9 +3,7 @@
 namespace App\Services;
 
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Validator;
 
 class FuelFileService
 {
