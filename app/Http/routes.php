@@ -8,22 +8,23 @@ Route::group(['prefix' => 'api'], function ()
         /* Documentation */
         Route::get('docs', ['as' => 'api.docs', 'uses' =>'Api\DocumentationController@show']);
 
-        /* 1C routes */
-        Route::group(['prefix' => '1c'], function ()
-        {
-            // Authentication
-            Route::get('auth', ['as' => 'api.1c.auth', 'uses' =>'Api\AuthController@authorizeAndGetToken1c']);
-
-            Route::group(['middleware' => ['auth:api', 'api']], function ()
-            {
-                // Upload fuel tickets file
-                Route::post('fuel_tickets', ['as' => 'api.1c.fuel_tickets.upload', 'uses' =>'Api\FuelTicketController@uploadFuelTicketsFile']);
-            });
-        });
-
-        /* Mobile routes */
+        /* Api routes */
         Route::group(['middleware' => 'api'], function ()
         {
+            /* 1C Api routes */
+            Route::group(['prefix' => '1c'], function ()
+            {
+                // Authentication
+                Route::get('auth', ['as' => 'api.1c.auth', 'uses' =>'Api\AuthController@authorizeAndGetToken1c']);
+
+                Route::group(['middleware' => ['auth:api', 'api']], function ()
+                {
+                    // Upload fuel tickets file
+                    Route::post('fuel_tickets', ['as' => 'api.1c.fuel_tickets.upload', 'uses' =>'Api\FuelTicketController@uploadFuelTicketsFile']);
+                });
+            });
+
+            /* Mobile Api routes */
             // Authentication
             Route::get('auth', ['as' => 'api.auth', 'uses' =>'Api\AuthController@authorizeAndGetToken']);
 
