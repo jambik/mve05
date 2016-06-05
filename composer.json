@@ -25,7 +25,8 @@
         "caouecs/laravel-lang": "^3.0",
         "snowfire/beautymail": "dev-master",
         "zircote/swagger-php": "^2.0",
-        "maatwebsite/excel": "^2.1"
+        "maatwebsite/excel": "^2.1",
+        "jenssegers/agent": "^2.3"
     },
     "autoload": {
         "classmap": [

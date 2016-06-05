@@ -10,7 +10,7 @@ class UsersTableSeeder extends Seeder
 
         [1, 'Джанбулат Магомаев', 'jambik@gmail.com'],
         [2, 'Джамал', '1c@gmail.com'],
-        [3, 'Ликойл общий', 'common@likoil.ru'],
+        [3, 'Ликойл общий', '001'],
 
     ];
 

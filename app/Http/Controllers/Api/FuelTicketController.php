@@ -10,6 +10,7 @@ use App\Services\FuelFileService;
 use Illuminate\Http\Request;
 use Auth;
 use Excel;
+use Illuminate\Support\Str;
 use Validator;
 
 class FuelTicketController extends ApiController
@@ -21,9 +22,9 @@ class FuelTicketController extends ApiController
      * @return Response
      *
      * @SWG\Post(
-     *     path="/fuel_tickets",
+     *     path="/1c/fuel_tickets",
      *     summary="Загрузка топливных талонов",
-     *     tags={"Загрузка топливных талонов"},
+     *     tags={"1С"},
      *     description="Загрузка файла топливных талонов в формате CSV",
      *     produces={"application/json"},
      *     @SWG\Parameter(
@@ -146,5 +147,177 @@ class FuelTicketController extends ApiController
         }
 
         return true;
+    }
+
+    /**
+     * Получение информации о топливном талоне
+     *
+     * @param Request $request
+     * @return Response
+     *
+     * @SWG\Post(
+     *     path="/fuel_ticket",
+     *     summary="Информация о топливном талоне",
+     *     tags={"Mobile"},
+     *     description="Получение информации о топливном талоне",
+     *     produces={"application/json"},
+     *     @SWG\Parameter(
+     *          name="api_token",
+     *          description="API Token",
+     *          type="string",
+     *          required=true,
+     *          in="query"
+     *      ),
+     *      @SWG\Parameter(
+     *          name="fuel_ticket",
+     *          description="Штрихкод топливного талона",
+     *          type="string",
+     *          required=true,
+     *          in="formData"
+     *      ),
+     *     @SWG\Response(
+     *         response=200,
+     *         description="Файл успешно импортирован",
+     *         @SWG\Schema(
+     *             type="object",
+     *             @SWG\Property(
+     *                 property="status",
+     *                 type="string"
+     *             ),
+     *             @SWG\Property(
+     *                 property="message",
+     *                 type="string"
+     *             ),
+     *             @SWG\Property(
+     *                 property="fuel_ticket",
+     *                 ref="#/definitions/FuelTicket"
+     *             )
+     *         )
+     *     ),
+     *     @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized"
+     *     ),
+     *     @SWG\Response(
+     *          response=404,
+     *          description="Not Found"
+     *     ),
+     *     @SWG\Response(
+     *          response=422,
+     *          description="Unprocessable Entity"
+     *     ),
+     * )
+     */
+    public function getFuelTicketInfo(Request $request)
+    {
+        $this->validate($request, [
+            'fuel_ticket' => 'required',
+        ]);
+
+        $fuelTicket = FuelTicket::where('code', $request->get('fuel_ticket'))->first();
+
+        if( ! $fuelTicket) {
+            return response()->json([
+                'status' => 'not found',
+                'message' => 'Топливный талон (' . $request->get('fuel_ticket') . ') не найден',
+            ], 404);
+        }
+
+        return response()->json([
+            'status' => 'ok',
+            'message' => 'Топливный талон найден',
+            'fuel_ticket' => $fuelTicket,
+        ]);
+    }
+
+    /**
+     * Использование топливных талонов
+     *
+     * @param Request $request
+     * @return Response
+     *
+     * @SWG\Post(
+     *     path="/use_fuel_tickets",
+     *     summary="Использование топливных талонов",
+     *     tags={"Mobile"},
+     *     description="Использование топливных талонов",
+     *     produces={"application/json"},
+     *     @SWG\Parameter(
+     *          name="api_token",
+     *          description="API Token",
+     *          type="string",
+     *          required=true,
+     *          in="query"
+     *      ),
+     *      @SWG\Parameter(
+     *          name="fuel_tickets",
+     *          description="Штрихкоды топливных талонов через запятую",
+     *          required=true,
+     *          in="formData",
+     *          type="string"
+     *      ),
+     *     @SWG\Response(
+     *         response=200,
+     *         description="Топливные талоны успешно использованы",
+     *         @SWG\Schema(
+     *             type="object",
+     *             @SWG\Property(
+     *                 property="status",
+     *                 type="string"
+     *             ),
+     *             @SWG\Property(
+     *                 property="message",
+     *                 type="string"
+     *             ),
+     *             @SWG\Property(
+     *                 property="found",
+     *                 type="array",
+     *                 @SWG\Items(type="string")
+     *             ),
+     *             @SWG\Property(
+     *                 property="not_found",
+     *                 type="array",
+     *                 @SWG\Items(type="string")
+     *             )
+     *         )
+     *     ),
+     *     @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized"
+     *     ),
+     *     @SWG\Response(
+     *          response=422,
+     *          description="Unprocessable Entity"
+     *     ),
+     * )
+     */
+    public function useFuelTickets(Request $request)
+    {
+        $this->validate($request, [
+            'fuel_tickets' => 'required',
+        ]);
+
+        $fuelTickets = explode(',', $request->get('fuel_tickets'));
+        $fuelTicketsStatus = [];
+        foreach ($fuelTickets as $key => $value) {
+            $fuelTickets[$key] = trim($value);
+
+            $fuelTicket = FuelTicket::where('code', $fuelTickets[$key])->first();
+            if( ! $fuelTicket) {
+                $fuelTicketsStatus['not_found'][] = $fuelTickets[$key];
+            } else {
+                $fuelTicketsStatus['found'][] = $fuelTickets[$key];
+            }
+        }
+
+        $message = isset($fuelTicketsStatus['found']) ? 'Топливные талоны (' . implode(', ', $fuelTicketsStatus['found']) . ') найдены. ' : '';
+        $message.= isset($fuelTicketsStatus['not_found']) ? 'НЕ НАЙДЕНЫ ТАЛОНЫ (' . implode(', ', $fuelTicketsStatus['not_found']) . '). ' : '';
+
+        return response()->json([
+            'status' => 'ok',
+            'message' => $message,
+            'found' => isset($fuelTicketsStatus['found']) ? $fuelTicketsStatus['found'] : [],
+            'not_found' => isset($fuelTicketsStatus['not_found']) ? $fuelTicketsStatus['not_found'] : [],
+        ]);
     }
 }

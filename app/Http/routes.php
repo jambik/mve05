@@ -5,16 +5,35 @@ Route::group(['prefix' => 'api'], function ()
 {
     Route::group(['prefix' => 'v1'], function ()
     {
-        ## Documentation
+        /* Documentation */
         Route::get('docs', ['as' => 'api.docs', 'uses' =>'Api\DocumentationController@show']);
 
-        ## Authentication
-        Route::get('auth', ['as' => 'api.auth', 'uses' =>'Api\AuthController@authorizeAndGetToken']);
-
-        Route::group(['middleware' => 'auth:api'], function ()
+        /* 1C routes */
+        Route::group(['prefix' => '1c'], function ()
         {
-            ## Upload fuel tickets file
-            Route::post('fuel_tickets', ['as' => 'api.fuel_tickets.upload', 'uses' =>'Api\FuelTicketController@uploadFuelTicketsFile']);
+            // Authentication
+            Route::get('auth', ['as' => 'api.1c.auth', 'uses' =>'Api\AuthController@authorizeAndGetToken1c']);
+
+            Route::group(['middleware' => ['auth:api', 'api']], function ()
+            {
+                // Upload fuel tickets file
+                Route::post('fuel_tickets', ['as' => 'api.1c.fuel_tickets.upload', 'uses' =>'Api\FuelTicketController@uploadFuelTicketsFile']);
+            });
+        });
+
+        /* Mobile routes */
+        Route::group(['middleware' => 'api'], function ()
+        {
+            // Authentication
+            Route::get('auth', ['as' => 'api.auth', 'uses' =>'Api\AuthController@authorizeAndGetToken']);
+
+            Route::group(['middleware' => ['auth:api']], function ()
+            {
+                // Get fuel ticket information
+                Route::post('fuel_ticket', ['as' => 'api.fuel_ticket', 'uses' => 'Api\FuelTicketController@getFuelTicketInfo']);
+                // Use fuel tickets
+                Route::post('use_fuel_tickets', ['as' => 'api.use_fuel_ticket', 'uses' => 'Api\FuelTicketController@useFuelTickets']);
+            });
         });
     });
 });
@@ -47,7 +66,13 @@ Route::group(['prefix' => 'admin'], function()
         Route::resource('fuel_files', 'Admin\FuelFilesController');
 
         ## Users 1C
-        Route::resource('users1c', 'Admin\Users1cController');
+        Route::resource('users_1c', 'Admin\Users1cController');
+
+        ## Users Azs
+        Route::resource('users_azs', 'Admin\UsersAzsController');
+
+        ## Log Access
+        Route::resource('log_access', 'Admin\LogAccessController');
 
         ## Administrators
         Route::resource('administrators', 'Admin\AdministratorsController');

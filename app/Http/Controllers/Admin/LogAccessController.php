@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\BackendController;
-use App\Role;
-use App\User;
+use App\LogAccess;
 use Illuminate\Http\Request;
 
-class Users1cController extends BackendController
+class LogAccessController extends BackendController
 {
     protected $resourceName = null;
 
@@ -15,8 +14,8 @@ class Users1cController extends BackendController
 
     public function __construct()
     {
-        $this->resourceName = 'users_1c';
-        $this->model = new User();
+        $this->resourceName = 'log_access';
+        $this->model = new LogAccess();
     }
 
     /**
@@ -26,9 +25,7 @@ class Users1cController extends BackendController
      */
     public function index()
     {
-        $items = User::whereHas('roles', function ($query) {
-            $query->where('role_id', 2);
-        })->get();
+        $items = $this->model->get();
 
         return view('admin.'.$this->resourceName.'.index', compact('items'));
     }
@@ -52,16 +49,7 @@ class Users1cController extends BackendController
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6'
-        ]);
-
-        $item = $this->model->create($request->except('password') + ['password' => bcrypt($request->input('password')), 'api_token' => str_random(60)]);
-
-        $role1c = Role::where('name', '1c')->first();
-        $item->attachRole($role1c);
+        $this->model->create($request->all());
 
         return redirect(route('admin.'.$this->resourceName.'.index'));
     }
@@ -86,7 +74,6 @@ class Users1cController extends BackendController
     public function edit($id)
     {
         $item = $this->model->findOrFail($id);
-        $item->password = '';
 
         return view('admin.'.$this->resourceName.'.edit', compact('item'));
     }
@@ -101,17 +88,9 @@ class Users1cController extends BackendController
      */
     public function update($id, Request $request)
     {
-        $passwordRule = $request->input('password') ? 'required|min:6' : '';
-
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|max:255|unique:users,email,' . $id,
-            'password' => $passwordRule
-        ]);
-
         $item = $this->model->findOrFail($id);
 
-        $item->update($request->except('password') + ($passwordRule ? ['password' => bcrypt($request->input('password'))] : []));
+        $item->update($request->all());
 
         return redirect(route('admin.'.$this->resourceName.'.index'));
     }

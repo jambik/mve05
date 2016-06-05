@@ -30,7 +30,7 @@ class User extends Authenticatable
 
     protected $fillable = ['name', 'email', 'password', 'api_token'];
 
-    protected $hidden = ['id', 'password', 'remember_token', 'created_at', 'updated_at', 'api_token'];
+    protected $hidden = ['id', 'password', 'remember_token', 'created_at', 'updated_at', 'api_token', 'roles'];
 
     public function fuelFiles()
     {

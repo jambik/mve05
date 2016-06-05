@@ -6,8 +6,9 @@ use App\Http\Controllers\BackendController;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
+use Agent;
 
-class Users1cController extends BackendController
+class UsersAzsController extends BackendController
 {
     protected $resourceName = null;
 
@@ -15,7 +16,7 @@ class Users1cController extends BackendController
 
     public function __construct()
     {
-        $this->resourceName = 'users_1c';
+        $this->resourceName = 'users_azs';
         $this->model = new User();
     }
 
@@ -27,7 +28,7 @@ class Users1cController extends BackendController
     public function index()
     {
         $items = User::whereHas('roles', function ($query) {
-            $query->where('role_id', 2);
+            $query->where('role_id', 3);
         })->get();
 
         return view('admin.'.$this->resourceName.'.index', compact('items'));
@@ -54,13 +55,13 @@ class Users1cController extends BackendController
     {
         $this->validate($request, [
             'name' => 'required',
-            'email' => 'required|email|max:255|unique:users',
+            'email' => 'required|max:255|unique:users',
             'password' => 'required|min:6'
         ]);
 
         $item = $this->model->create($request->except('password') + ['password' => bcrypt($request->input('password')), 'api_token' => str_random(60)]);
 
-        $role1c = Role::where('name', '1c')->first();
+        $role1c = Role::where('name', 'azs')->first();
         $item->attachRole($role1c);
 
         return redirect(route('admin.'.$this->resourceName.'.index'));
@@ -105,7 +106,7 @@ class Users1cController extends BackendController
 
         $this->validate($request, [
             'name' => 'required',
-            'email' => 'required|email|max:255|unique:users,email,' . $id,
+            'email' => 'required|max:255|unique:users,email,' . $id,
             'password' => $passwordRule
         ]);
 

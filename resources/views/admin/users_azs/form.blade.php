@@ -4,7 +4,7 @@
 </div>
 
 <div class="input-field col s12">
-    {!! Form::label('email', 'Email') !!}
+    {!! Form::label('email', 'Код АЗС') !!}
     {!! Form::text('email', null, ['class' => 'validate'.($errors->has('email') ? ' invalid' : '')]) !!}
 </div>
 
@@ -26,5 +26,5 @@
 </div>
 
 <div class="input-field col s12 center">
-    <a href="{{ route('admin.users1c.index') }}" class="btn grey waves-effect waves-light">Отмена</a>
+    <a href="{{ route('admin.users_azs.index') }}" class="btn grey waves-effect waves-light">Отмена</a>
 </div>
