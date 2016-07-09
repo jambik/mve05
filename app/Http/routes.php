@@ -30,6 +30,8 @@ Route::group(['prefix' => 'api'], function ()
 
             Route::group(['middleware' => ['auth:api']], function ()
             {
+                // Check if Token is valid
+                Route::get('check_token', ['as' => 'api.check_token', 'uses' => 'Api\AuthController@checkToken']);
                 // Get fuel ticket information
                 Route::post('fuel_ticket', ['as' => 'api.fuel_ticket', 'uses' => 'Api\FuelTicketController@getFuelTicketInfo']);
                 // Use fuel tickets

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 
-use Agent;
 use App\Http\Controllers\ApiController;
 use Auth;
 use Illuminate\Http\Request;
@@ -141,5 +140,50 @@ class AuthController extends ApiController
         }
 
         return response('Unauthorized.', 401);
+    }
+
+    /**
+     * @return Response
+     *
+     * @SWG\Get(
+     *     path="/check_token",
+     *     summary="Проверка Токена",
+     *     tags={"Mobile"},
+     *     description="Проверка на валидность Токена",
+     *     produces={"application/json"},
+     *     @SWG\Parameter(
+     *          name="api_token",
+     *          description="API Token",
+     *          type="string",
+     *          required=true,
+     *          in="query"
+     *      ),
+     *     @SWG\Response(
+     *         response=200,
+     *         description="Токен валидный",
+     *         @SWG\Schema(
+     *             type="object",
+     *             @SWG\Property(
+     *                 property="status",
+     *                 type="string"
+     *             ),
+     *             @SWG\Property(
+     *                 property="message",
+     *                 type="string"
+     *             )
+     *         )
+     *     ),
+     *     @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized"
+     *     ),
+     * )
+     */
+    public function checkToken()
+    {
+        return response()->json([
+            'status' => 'ok',
+            'message' => 'Токен валидный',
+        ]);
     }
 }
