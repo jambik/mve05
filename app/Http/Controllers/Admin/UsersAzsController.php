@@ -129,4 +129,20 @@ class UsersAzsController extends BackendController
 
         return redirect(route('admin.'.$this->resourceName.'.index'));
     }
+
+    /**
+     * Refresh Api Token
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function refreshApiToken($id)
+    {
+        $item = $this->model->findOrFail($id);
+
+        $item->api_token = str_random(60);
+        $item->save();
+
+        return redirect(route('admin.'.$this->resourceName.'.index'));
+    }
 }

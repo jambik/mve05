@@ -73,6 +73,7 @@ Route::group(['prefix' => 'admin'], function()
 
         ## Users Azs
         Route::resource('users_azs', 'Admin\UsersAzsController');
+        Route::get('users_azs/{id}/refresh_api_token', ['as' => 'admin.users_azs.refresh_api_token', 'uses' => 'Admin\UsersAzsController@refreshApiToken'])->where('id', '[0-9]+');
 
         ## Log Access
         Route::resource('log_access', 'Admin\LogAccessController');
