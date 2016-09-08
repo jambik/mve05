@@ -153,7 +153,7 @@ class FuelTicketController extends ApiController
      * @param Request $request
      * @return Response
      *
-     * @SWG\Post(
+     * @SWG\Get(
      *     path="/fuel_ticket",
      *     summary="Информация о топливном талоне",
      *     tags={"Mobile"},
@@ -234,7 +234,7 @@ class FuelTicketController extends ApiController
      * @param Request $request
      * @return Response
      *
-     * @SWG\Post(
+     * @SWG\Get(
      *     path="/use_fuel_tickets",
      *     summary="Использование топливных талонов",
      *     tags={"Mobile"},
