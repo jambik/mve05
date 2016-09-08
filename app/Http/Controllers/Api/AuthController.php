@@ -6,8 +6,6 @@ use App\Http\Controllers\ApiController;
 use Auth;
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
-
 class AuthController extends ApiController
 {
     /**

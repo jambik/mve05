@@ -5,12 +5,10 @@ namespace App\Http\Controllers\Api;
 use App\FuelFile;
 use App\FuelTicket;
 use App\Http\Controllers\ApiController;
-use App\Http\Requests;
 use App\Services\FuelFileService;
 use Illuminate\Http\Request;
 use Auth;
 use Excel;
-use Illuminate\Support\Str;
 use Validator;
 
 class FuelTicketController extends ApiController
@@ -173,7 +171,7 @@ class FuelTicketController extends ApiController
      *          description="Штрихкод топливного талона",
      *          type="string",
      *          required=true,
-     *          in="formData"
+     *          in="query"
      *      ),
      *     @SWG\Response(
      *         response=200,

@@ -35,7 +35,7 @@ Route::group(['prefix' => 'api'], function ()
                 // Get fuel ticket information
                 Route::match(['get', 'post'], 'fuel_ticket', ['as' => 'api.fuel_ticket', 'uses' => 'Api\FuelTicketController@getFuelTicketInfo']);
                 // Use fuel tickets
-                Route::post('use_fuel_tickets', ['as' => 'api.use_fuel_ticket', 'uses' => 'Api\FuelTicketController@useFuelTickets']);
+                Route::get('use_fuel_tickets', ['as' => 'api.use_fuel_ticket', 'uses' => 'Api\FuelTicketController@useFuelTickets']);
             });
         });
     });
