@@ -3,7 +3,7 @@
         <nav class="teal darken-3">
             <div class="nav-wrapper">
                 <div class="col s12">
-                    <a href="{{ url('/admin') }}" class="brand-logo"><img src="/img/logo.png" class="img-responsive" style="height: 35px;"> Ликойл</a>
+                    <a href="{{ url('/admin') }}" class="brand-logo"><img src="/img/logo.png" class="img-responsive" style="height: 35px;"> MVE Топливные талоны</a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         <li><a class="dropdown-button" href="#" data-activates="user-dropdown"><i class="material-icons left">account_circle</i> {{ Auth::user()->name }}</a></li>
                         <li><a class="dropdown-button" href="#" data-activates="settings-dropdown"><i class="material-icons left">settings</i> Настройки</a></li>
