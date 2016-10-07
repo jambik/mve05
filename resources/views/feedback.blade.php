@@ -34,8 +34,6 @@
     </form>
 @endsection
 
-@if (app()->environment('production'))
-    @section('header_scripts')
-        <script src='https://www.google.com/recaptcha/api.js?hl=ru'></script>
-    @endsection
-@endif
+@section('header_scripts')
+    <script src='https://www.google.com/recaptcha/api.js?hl=ru'></script>
+@endsection

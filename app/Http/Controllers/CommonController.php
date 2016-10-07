@@ -48,19 +48,16 @@ class CommonController extends FrontendController
 
         $validator = Validator::make($request->all(), $rules, $messages);
 
-        if (! App::isLocal())
+        $validator->after(function($validator) use ($request)
         {
-            $validator->after(function($validator) use ($request)
-            {
-                $recaptcha = new ReCaptcha(env('GOOGLE_RECAPTCHA_SECRET'));
-                $resp = $recaptcha->verify($request->get('g-recaptcha-response'), $_SERVER['REMOTE_ADDR']);
+            $recaptcha = new ReCaptcha(env('GOOGLE_RECAPTCHA_SECRET'));
+            $resp = $recaptcha->verify($request->get('g-recaptcha-response'), $_SERVER['REMOTE_ADDR']);
 
-                if ( ! $resp->isSuccess())
-                {
-                    $validator->errors()->add('google_recaptcha_error', 'Ошибка reCAPTCHA: '.implode(', ', $resp->getErrorCodes()));
-                }
-            });
-        }
+            if ( ! $resp->isSuccess())
+            {
+                $validator->errors()->add('google_recaptcha_error', 'Ошибка reCAPTCHA: '.implode(', ', $resp->getErrorCodes()));
+            }
+        });
 
         if ($validator->fails())
         {

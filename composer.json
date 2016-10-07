@@ -14,7 +14,11 @@
         "zizaco/entrust": "dev-laravel-5",
         "cviebrock/eloquent-sluggable": "^4.0",
         "google/recaptcha": "^1.1",
-        "snowfire/beautymail": "^1.0"
+        "snowfire/beautymail": "^1.0",
+        "caouecs/laravel-lang": "^3.0",
+        "zircote/swagger-php": "^2.0",
+        "maatwebsite/excel": "^2.1",
+        "jenssegers/agent": "^2.3"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -24,12 +28,7 @@
         "symfony/dom-crawler": "2.8.*|3.0.*",
         "itsgoingd/clockwork": "^1.10",
         "barryvdh/laravel-ide-helper": "^2.1",
-        "barryvdh/laravel-debugbar": "^2.2",
-        "caouecs/laravel-lang": "^3.0",
-        "snowfire/beautymail": "dev-master",
-        "zircote/swagger-php": "^2.0",
-        "maatwebsite/excel": "^2.1",
-        "jenssegers/agent": "^2.3"
+        "barryvdh/laravel-debugbar": "^2.2"
     },
     "autoload": {
         "classmap": [
