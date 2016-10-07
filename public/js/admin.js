@@ -52,6 +52,15 @@ $(document).ready(function () {
 
     }
 
+    // Применять плагин flora editor к html полям
+    if ($('.input-html').length) {
+
+        $('.input-html textarea').each(function(){
+            CKEDITOR.replace( this );
+        });
+
+    }
+
     // Применяем стили material ко всем элементам select
     if ($('#app select').length) {
 

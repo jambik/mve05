@@ -41,6 +41,11 @@
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="nav navbar-nav">
                 <li><a href="/">Главная</a></li>
+                <li><a href="{{ route('page.show', 'about') }}">О компании</a></li>
+                <li><a href="{{ route('page.show', 'gas_stations') }}">Список АЗС</a></li>
+                <li><a href="{{ route('news') }}">Новости</a></li>
+                <li><a href="{{ route('page.show', 'contacts') }}">Контакты</a></li>
+                <li><a href="{{ route('feedback') }}">Обратная связь</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 @if (Auth::check())

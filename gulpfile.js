@@ -56,4 +56,25 @@ elixir(function(mix) {
 
     /* Materialize-css Files */
     mix.copy('bower_components/Materialize/dist/fonts', 'public/fonts');
+
+    /* CKEDITOR Files */
+    mix.copy([
+        'node_modules/ckeditor/ckeditor.js',
+        'node_modules/ckeditor/contents.css',
+        'node_modules/ckeditor/styles.js'
+    ], 'public/library/ckeditor');
+    mix.copy([
+        'node_modules/ckeditor/lang/en.js',
+        'node_modules/ckeditor/lang/ru.js'
+    ], 'public/library/ckeditor/lang');
+    mix.copy('node_modules/ckeditor/plugins/*.*', 'public/library/ckeditor/plugins');
+    mix.copy('node_modules/ckeditor/plugins/div', 'public/library/ckeditor/plugins/div');
+    mix.copy('node_modules/ckeditor/plugins/font', 'public/library/ckeditor/plugins/font');
+    mix.copy('node_modules/ckeditor/plugins/image', 'public/library/ckeditor/plugins/image');
+    mix.copy('node_modules/ckeditor/plugins/justify', 'public/library/ckeditor/plugins/justify');
+    mix.copy('node_modules/ckeditor/plugins/link', 'public/library/ckeditor/plugins/link');
+    mix.copy('node_modules/ckeditor/plugins/magicline', 'public/library/ckeditor/plugins/magicline');
+    mix.copy('node_modules/ckeditor/plugins/stylesheetparser', 'public/library/ckeditor/plugins/stylesheetparser');
+    mix.copy('node_modules/ckeditor/plugins/table', 'public/library/ckeditor/plugins/table');
+    mix.copy('node_modules/ckeditor/skins/moono', 'public/library/ckeditor/skins/moono');
 });

@@ -55,6 +55,15 @@ Route::group(['prefix' => 'admin'], function()
         ## Admin index
         Route::get('/', ['as' => 'admin', 'uses' =>'Admin\IndexController@index']);
 
+        ## Pages
+        Route::resource('pages', 'Admin\PagesController');
+
+        ## Blocks
+        Route::resource('blocks', 'Admin\BlocksController');
+
+        ## News
+        Route::resource('news', 'Admin\NewsController');
+
         ## Settings
         Route::get('settings', ['as' => 'admin.settings', 'uses' =>'Admin\SettingsController@index']);
         Route::post('settings', ['as' => 'admin.settings.save', 'uses' =>'Admin\SettingsController@save']);
@@ -96,4 +105,18 @@ Route::group([], function ()
 
     ## Index
     Route::get('/', ['as' => 'index', 'uses' => 'IndexController@index']);
+
+    ## Pages
+    Route::get('page/{slug}', ['as' => 'page.show', 'uses' => 'PagesController@show']);
+
+    ## News
+    Route::get('news', ['as' => 'news', 'uses' => 'NewsController@index']);
+    Route::get('news/{id}', ['as' => 'news.show', 'uses' => 'NewsController@show']);
+
+    # Feedback
+    Route::get('feedback', ['as' => 'feedback', 'uses' => 'CommonController@feedback']);
+    Route::post('feedback', ['as' => 'feedback.send', 'uses' => 'CommonController@feedbackSend']);
+
+    ## Callback
+    Route::post('callback', ['as' => 'callback', 'uses' => 'CommonController@callback']);
 });

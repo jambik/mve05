@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App;
 use App\Http\Requests;
+use App\Page;
 use Illuminate\Http\Request;
-use Mail;
 use ReCaptcha\ReCaptcha;
 use Snowfire\Beautymail\Beautymail;
 use Validator;
@@ -18,7 +19,9 @@ class CommonController extends FrontendController
      */
     public function feedback()
     {
-        return view('feedback');
+        $page = Page::findBySlug('feedback');
+
+        return view('feedback', compact('page'));
     }
 
     /**
@@ -45,16 +48,19 @@ class CommonController extends FrontendController
 
         $validator = Validator::make($request->all(), $rules, $messages);
 
-        $validator->after(function($validator) use ($request)
+        if (! App::isLocal())
         {
-            $recaptcha = new ReCaptcha(env('GOOGLE_RECAPTCHA_SECRET'));
-            $resp = $recaptcha->verify($request->get('g-recaptcha-response'), $_SERVER['REMOTE_ADDR']);
-
-            if ( ! $resp->isSuccess())
+            $validator->after(function($validator) use ($request)
             {
-                $validator->errors()->add('google_recaptcha_error', 'Ошибка reCAPTCHA: '.implode(', ', $resp->getErrorCodes()));
-            }
-        });
+                $recaptcha = new ReCaptcha(env('GOOGLE_RECAPTCHA_SECRET'));
+                $resp = $recaptcha->verify($request->get('g-recaptcha-response'), $_SERVER['REMOTE_ADDR']);
+
+                if ( ! $resp->isSuccess())
+                {
+                    $validator->errors()->add('google_recaptcha_error', 'Ошибка reCAPTCHA: '.implode(', ', $resp->getErrorCodes()));
+                }
+            });
+        }
 
         if ($validator->fails())
         {

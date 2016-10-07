@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\Page;
 
 class IndexController extends FrontendController
 {
@@ -13,6 +14,8 @@ class IndexController extends FrontendController
      */
     public function index()
     {
-        return view('index');
+        $page = Page::find(1);
+
+        return view('index', compact('page'));
     }
 }

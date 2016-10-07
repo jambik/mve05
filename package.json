@@ -1,11 +1,12 @@
 {
   "private": true,
   "devDependencies": {
-    "gulp": "^3.9.1",
+    "gulp": "^3.9.1"
   },
   "dependencies": {
     "laravel-elixir": "^5.0.0",
     "laravel-elixir-vueify": "^1.0.0",
+    "ckeditor": "^4.5.7",
     "swagger-ui": "^2.1.4",
     "tablesorter": "^2.23.5",
     "vue": "^1.0.17"
