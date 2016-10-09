@@ -36,18 +36,20 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ route('index') }}"><img alt="Brand" src="{{ asset('img/logo.png') }}" style="width: 30px; display: inline-block; vertical-align: middle;" class="img-responsive"> Laravel CMS</a>
+            <a class="navbar-brand" href="{{ route('index') }}" style="height: auto;">
+                <img alt="Brand" src="{{ asset('img/logo.png') }}" style="width: 84px; display: inline-block; vertical-align: middle;" class="img-responsive">
+                Топливные талоны
+                <span style="display: block; font-size: 8pt; text-transform: uppercase;">motus vita est</span>
+            </a>
         </div>
+
+        <p class="navbar-text">
+            <i class="fa fa-phone-square"></i> +7 (8722) 55-54-63<br>
+            <i class="fa fa-phone-square"></i> +7 989 665-20-75
+        </p>
+
         <div class="collapse navbar-collapse" id="navbar">
-            <ul class="nav navbar-nav">
-                <li><a href="/">Главная</a></li>
-                <li><a href="{{ route('page.show', 'about') }}">О компании</a></li>
-                <li><a href="{{ route('page.show', 'gas_stations') }}">Список АЗС</a></li>
-                <li><a href="{{ route('news') }}">Новости</a></li>
-                <li><a href="{{ route('page.show', 'contacts') }}">Контакты</a></li>
-                <li><a href="{{ route('feedback') }}">Обратная связь</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right navbar-personal">
                 @if (Auth::check())
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" id="dropdownUser" data-toggle="dropdown" aria-expanded="true">
@@ -73,13 +75,26 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-md-4">
-                menu
+                <div class="list-group">
+                    <a href="/" class="list-group-item">Главная</a>
+                    <a href="{{ route('page.show', 'about') }}" class="list-group-item">О компании</a>
+                    <a href="{{ route('page.show', 'gas_stations') }}" class="list-group-item">Список АЗС</a>
+                    <a href="{{ route('news') }}" class="list-group-item">Новости</a>
+                    <a href="{{ route('page.show', 'contacts') }}" class="list-group-item">Контакты</a>
+                    <a href="{{ route('feedback') }}" class="list-group-item">Обратная связь</a>
+                </div>
             </div>
             <div class="col-lg-9 col-md-8">
                 @yield('content')
             </div>
         </div>
     </div>
+</section>
+
+<section id="footer">
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
 </section>
 
 @include('partials._flash')

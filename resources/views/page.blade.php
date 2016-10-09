@@ -9,4 +9,5 @@
     @include('partials._errors')
 
     {!! $page->text !!}
+
 @endsection
