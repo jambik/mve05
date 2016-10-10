@@ -28,6 +28,7 @@ h5 { font-size: 30px; }
 
 #main { margin: 23px 0 0 0; }
 
+.navbar-default { background: linear-gradient(to top, #efefef, #ffffff); }
 .navbar-text { padding-top: 10px; padding-left: 20%; }
 .navbar-personal { padding-top: 15px; }
 
