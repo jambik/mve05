@@ -38,8 +38,8 @@
             </button>
             <a class="navbar-brand" href="{{ route('index') }}" style="height: auto;">
                 <img alt="Brand" src="{{ asset('img/logo.png') }}" style="width: 84px; display: inline-block; vertical-align: middle;" class="img-responsive">
-                Топливные талоны
-                <span style="display: block; font-size: 8pt; text-transform: uppercase;">motus vita est</span>
+                <span class="brand-name">Топливные талоны</span>
+                <span class="brand-slogan">motus vita est</span>
             </a>
         </div>
 

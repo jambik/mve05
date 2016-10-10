@@ -31,6 +31,9 @@ h5 { font-size: 30px; }
 .navbar-text { padding-top: 10px; padding-left: 20%; }
 .navbar-personal { padding-top: 15px; }
 
+.brand-name {  }
+.brand-slogan { display: block; font-size: 8pt; text-transform: uppercase; }
+
 .products-tiles {  }
 .products-tiles .product-tile { margin: 0 0 30px 0; }
 .products-tiles .img { margin: 0 0 15px 0; }
@@ -115,7 +118,9 @@ footer li { display: inline-block; margin: 0 20px 0 0; }
 
 /* mobile small - less than 480 */
 @media (max-width: 479px) {
-
+    .brand-name { font-size: 70%; }
+    .navbar-text { padding-top: 0; padding-left: 0; }
+    .navbar-personal { padding-top: 15px; }
 }
 
 /* mobile - 480 and up */
