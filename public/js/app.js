@@ -22,8 +22,8 @@ $(document).ready(function() {
         });
     }
 
-    if ($('.popup-product').length) {
-        $('.popup-product').magnificPopup({
+    if ($('.magnific-image').length) {
+        $('.magnific-image').magnificPopup({
             type: 'image',
             zoom: {
                 enabled: true
