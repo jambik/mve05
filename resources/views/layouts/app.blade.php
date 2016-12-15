@@ -78,7 +78,7 @@
                 <div class="list-group">
                     <a href="/" class="list-group-item">Главная</a>
                     <a href="{{ route('page.show', 'about') }}" class="list-group-item">О компании</a>
-                    <a href="{{ route('page.show', 'gas_stations') }}" class="list-group-item">Список АЗС</a>
+                    <a href="{{ route('azs') }}" class="list-group-item">Список АЗС</a>
                     <a href="{{ route('news') }}" class="list-group-item">Новости</a>
                     <a href="{{ route('page.show', 'contacts') }}" class="list-group-item">Контакты</a>
                     <a href="{{ route('feedback') }}" class="list-group-item">Обратная связь</a>
