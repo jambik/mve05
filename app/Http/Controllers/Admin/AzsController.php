@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Azs;
 use App\Http\Controllers\BackendController;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AzsController extends BackendController
@@ -26,7 +25,7 @@ class AzsController extends BackendController
      */
     public function index()
     {
-        $items = $this->model->orderBy('published_at', 'desc')->get();
+        $items = $this->model->get();
 
         return view('admin.'.$this->resourceName.'.index', compact('items'));
     }
