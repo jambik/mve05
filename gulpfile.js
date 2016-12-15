@@ -77,5 +77,5 @@ elixir(function(mix) {
     mix.copy('node_modules/ckeditor/plugins/stylesheetparser', 'public/library/ckeditor/plugins/stylesheetparser');
     mix.copy('node_modules/ckeditor/plugins/table', 'public/library/ckeditor/plugins/table');
     mix.copy('node_modules/ckeditor/skins/moono', 'public/library/ckeditor/skins/moono');
-    mix.copy('node_modules/ckeditor/skins/moono-дш', 'public/library/ckeditor/skins/moono');
+    mix.copy('node_modules/ckeditor/skins/moono-lisa', 'public/library/ckeditor/skins/moono-lisa');
 });

@@ -10,9 +10,7 @@
 
     <h1>Список АЗС, партнеров MVE, принимающих талоны компании MVE</h1>
 
-    <div id="map" style="width: 100%; height: 500px;">
-
-    </div>
+    <div id="map" style="width: 100%; height: 500px;"></div>
 
     <script type="text/javascript">
         var azsObject = {
@@ -61,7 +59,8 @@
                     position: latLng,
                     map: map,
                     title: azsObject.azs[i].name,
-                    index : i
+                    index : i,
+                    icon: '{{ asset('img/map-gas-station.png') }}'
                 });
                 markers[i].addListener('click', function() {
                     for (var j = 0; j < infowindows.length; j++ ) {
@@ -74,5 +73,29 @@
     </script>
 
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAau6IrQRAo4i8uT8aPexzKrVWzJgkwUJk&language=ru&callback=initMap"></script>
+
+    <p>&nbsp;</p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Место расположения</th>
+                <th>Наименование АЗС</th>
+                <th>Адрес</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($azs as $value)
+                <tr>
+                    <td>{{ $value->location }}</td>
+                    <td>
+                        {{ $value->name }}
+                        {!! $value->description ? "<div class='small'>".$value->description.'</div>' : '' !!}
+                    </td>
+                    <td>{{ $value->address }}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 
 @endsection
