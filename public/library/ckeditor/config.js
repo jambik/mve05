@@ -28,6 +28,8 @@ CKEDITOR.editorConfig = function( config ) {
 
     config.allowedContent = true;
 
+    config.skin = 'moono-lisa';
+
     config.toolbarCanCollapse = true;
     config.toolbarStartupExpanded = false;
 

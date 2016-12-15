@@ -55,6 +55,9 @@ Route::group(['prefix' => 'admin'], function()
         ## Admin index
         Route::get('/', ['as' => 'admin', 'uses' =>'Admin\IndexController@index']);
 
+        ## Azs
+        Route::resource('azs', 'Admin\AzsController');
+
         ## Pages
         Route::resource('pages', 'Admin\PagesController');
 
@@ -105,6 +108,9 @@ Route::group([], function ()
 
     ## Index
     Route::get('/', ['as' => 'index', 'uses' => 'IndexController@index']);
+
+    ## Azs
+    Route::get('azs', ['as' => 'azs', 'uses' => 'AzsController@index']);
 
     ## Pages
     Route::get('page/{slug}', ['as' => 'page.show', 'uses' => 'PagesController@show']);

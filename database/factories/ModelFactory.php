@@ -39,3 +39,14 @@ $factory->define(App\News::class, function (Faker\Generator $faker) {
         'image' => $faker->image(storage_path('images').DIRECTORY_SEPARATOR.'news', 640, 480, null, false, false),
     ];
 });
+
+$factory->define(App\Azs::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->company,
+        'description' => $faker->paragraph(3),
+        'location' => $faker->city,
+        'address' => $faker->address,
+        'lat' => $faker->latitude,
+        'lng' => $faker->longitude,
+    ];
+});
