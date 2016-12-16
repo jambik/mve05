@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PagesTableSeeder::class);
         $this->call(BlocksTableSeeder::class);
         $this->call(NewsTableSeeder::class);
+        $this->call(AzsTableSeeder::class);
 
         Model::reguard();
     }

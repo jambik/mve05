@@ -51,7 +51,8 @@ elixir(function(mix) {
         '../../../bower_components/sweetalert/dist/sweetalert.min.js',
         '../../../node_modules/tablesorter/dist/js/jquery.tablesorter.combined.min.js',
         '../../../node_modules/tablesorter/dist/js/extras/jquery.tablesorter.pager.min.js',
-        '../../../bower_components/datetimepicker/build/jquery.datetimepicker.full.min.js'
+        '../../../bower_components/datetimepicker/build/jquery.datetimepicker.full.min.js',
+        '../../../bower_components/jquery-ui/jquery-ui.min.js',
     ], 'public/js/admin.bundle.js');
 
     /* Materialize-css Files */

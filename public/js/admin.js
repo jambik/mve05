@@ -41,6 +41,44 @@ $(document).ready(function () {
 
     }
 
+    // Применяем плагин jQuery UI Sortable к таблице
+    var $sortableTable = $('tbody.sortable');
+    if ($sortableTable.length > 0) {
+        $sortableTable.sortable({
+            handle: '.sortable-handle',
+            axis: 'y',
+            update: function(a, b){
+
+                var entityName = $(this).data('entityName');
+                var $sorted = b.item;
+
+                var $previous = $sorted.prev();
+                var $next = $sorted.next();
+
+                if ($previous.length > 0) {
+                    changePosition({
+                        parentId: $sorted.data('parentId'),
+                        type: 'moveAfter',
+                        entityName: entityName,
+                        id: $sorted.data('itemId'),
+                        positionEntityId: $previous.data('itemId')
+                    });
+                } else if ($next.length > 0) {
+                    changePosition({
+                        parentId: $sorted.data('parentId'),
+                        type: 'moveBefore',
+                        entityName: entityName,
+                        id: $sorted.data('itemId'),
+                        positionEntityId: $next.data('itemId')
+                    });
+                } else {
+                    console.error('Something wrong!');
+                }
+            },
+            cursor: "move"
+        });
+    }
+
     // Применять плагин datetime к полям типа дата
     if ($('.input-datetime').length) {
 
@@ -69,6 +107,32 @@ $(document).ready(function () {
     }
 
 });
+
+/**
+ * Сортировка таблицы
+ *
+ * @param type string 'insertAfter' or 'insertBefore'
+ * @param entityName
+ * @param id
+ * @param positionId
+ */
+var changePosition = function(requestData){
+    $.ajax({
+        'url': '/admin/sort',
+        'type': 'POST',
+        'data': requestData,
+        'success': function(data) {
+            if (data.success) {
+                console.log('Saved!');
+            } else {
+                console.error(data.errors);
+            }
+        },
+        'error': function(){
+            console.error('Something wrong!');
+        }
+    });
+};
 
 /**
  * Подтверждения удаления элемента

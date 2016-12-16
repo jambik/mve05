@@ -20,6 +20,7 @@ class CreateAzsTable extends Migration
             $table->string('address');
             $table->string('lat');
             $table->string('lng');
+            $table->integer('position');
             $table->timestamps();
         });
     }

@@ -8,6 +8,7 @@
         <table id="table_items">
             <thead>
                 <tr>
+                    <th class="filter-false btn-collumn" data-sorter="false"></th>
                     <th>Id</th>
                     <th>Название АЗС</th>
                     <th>Описание</th>
@@ -20,7 +21,7 @@
             </thead>
             <tfoot>
                 <tr>
-                    <th colspan="8" class="pager form-inline">
+                    <th colspan="9" class="pager form-inline">
                         <button type="button" class="btn btn-small waves-effect waves-light first"><i class="material-icons">first_page</i></button>
                         <button type="button" class="btn btn-small waves-effect waves-light prev"><i class="material-icons">navigate_before</i></button>
                         <span class="pagedisplay"></span> <!-- this can be any element, including an input -->
@@ -36,9 +37,10 @@
                     </th>
                 </tr>
             </tfoot>
-            <tbody>
+            <tbody class="sortable" data-entity-name="azs">
                 @foreach($items as $item)
-                    <tr>
+                    <tr data-item-id="{{ $item->id }}">
+                        <td class="sortable-handle"><i class="material-icons">&#xE240;</i></td>
                         <td>{{ $item->id }}</td>
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->description }}</td>

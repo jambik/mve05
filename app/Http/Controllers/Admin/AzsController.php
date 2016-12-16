@@ -25,7 +25,7 @@ class AzsController extends BackendController
      */
     public function index()
     {
-        $items = $this->model->get();
+        $items = $this->model->sorted()->get();
 
         return view('admin.'.$this->resourceName.'.index', compact('items'));
     }

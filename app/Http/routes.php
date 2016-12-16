@@ -93,6 +93,9 @@ Route::group(['prefix' => 'admin'], function()
         ## Administrators
         Route::resource('administrators', 'Admin\AdministratorsController');
 
+        ## Sortable routes
+        Route::post('sort', ['as' => 'sort', 'uses' => '\Rutorika\Sortable\SortableController@sort']);
+
         ## Import Fuel Tickets
         Route::get('fuel_tickets_upload', ['as' => 'admin.fuel_tickets_upload.show', 'uses' =>'Admin\FuelTicketsUploadController@show']);
         Route::post('fuel_tickets_upload', ['as' => 'admin.fuel_tickets_upload.upload', 'uses' =>'Admin\FuelTicketsUploadController@upload']);

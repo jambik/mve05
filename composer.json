@@ -18,7 +18,8 @@
         "caouecs/laravel-lang": "^3.0",
         "zircote/swagger-php": "^2.0",
         "maatwebsite/excel": "^2.1",
-        "jenssegers/agent": "^2.3"
+        "jenssegers/agent": "^2.3",
+        "rutorika/sortable": "^3.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

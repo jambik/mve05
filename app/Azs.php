@@ -4,10 +4,11 @@ namespace App;
 
 use App\Traits\ResourceableTrait;
 use Illuminate\Database\Eloquent\Model;
+use Rutorika\Sortable\SortableTrait;
 
 class Azs extends Model
 {
-    use ResourceableTrait;
+    use ResourceableTrait, SortableTrait;
 
     protected $table = 'azs';
 
