@@ -10,20 +10,24 @@
 
     <h1>Список АЗС, партнеров MVE, принимающих талоны компании MVE</h1>
 
-    <div id="map" style="width: 100%; height: 500px;"></div>
+    <a name="map"></a>
+    <div id="map" style="width: 100%; height: 500px;" class="hidden-print"></div>
 
     <script type="text/javascript">
         var azsObject = {
             "azs" : [
                 @foreach($azs as $value)
-                {
-                    "name" : "{{ $value->name }}",
-                    "description" : "{{ $value->description }}",
-                    "location" : "{{ $value->location }}",
-                    "address" : "{{ $value->address }}",
-                    "lat" : "{{ $value->lat }}",
-                    "lng" : "{{ $value->lng }}"
-                },
+                    @if ($value->lat && $value->lng)
+                        {
+                            "id" : "{{ $value->id }}",
+                            "name" : "{{ $value->name }}",
+                            "description" : "{{ $value->description }}",
+                            "location" : "{{ $value->location }}",
+                            "address" : "{{ $value->address }}",
+                            "lat" : "{{ $value->lat }}",
+                            "lng" : "{{ $value->lng }}"
+                        },
+                    @endif
                 @endforeach
             ]
         };
@@ -31,6 +35,9 @@
 
     <script type="text/javascript">
         var map;
+        var openedInfoWindow = false;
+        var infowindows = new Array();
+        var markers     = new Array();
 
         function initMap()
         {
@@ -40,12 +47,12 @@
                 streetViewControl: false
             });
 
-            var infowindows = new Array();
-            var markers = new Array();
-
             for (var i = 0; i < azsObject.azs.length; i++) {
+                // Id записи
+                var id = Number(azsObject.azs[i].id);
+
                 // Создание окна информации о АЗС
-                infowindows[i] = new google.maps.InfoWindow({
+                infowindows[id] = new google.maps.InfoWindow({
                     content: '<div style="font-weight: bolder; font-size: 150%; margin: 0 0 10px 0;">' + azsObject.azs[i].name + '</div>' +
                         '<p>' + azsObject.azs[i].description + '</p>' +
                         '<p>' + azsObject.azs[i].location + '</p>' +
@@ -55,20 +62,37 @@
 
                 // Создание маркера АЗС на карте
                 var latLng = new google.maps.LatLng(azsObject.azs[i].lat, azsObject.azs[i].lng);
-                markers[i] = new google.maps.Marker({
+                markers[id] = new google.maps.Marker({
                     position: latLng,
                     map: map,
                     title: azsObject.azs[i].name,
-                    index : i,
+                    index : id,
                     icon: '{{ asset('img/map-gas-station.png') }}'
                 });
-                markers[i].addListener('click', function() {
-                    for (var j = 0; j < infowindows.length; j++ ) {
-                        infowindows[j].close();
+                markers[id].addListener('click', function() {
+                    if (openedInfoWindow) {
+                        openedInfoWindow.close();
                     }
                     infowindows[this.index].open(map, this);
+                    openedInfoWindow = infowindows[this.index];
                 });
             }
+        }
+
+        function showAzsOnMap(lat, lng, index)
+        {
+            document.location = '#map';
+            var latLng = new google.maps.LatLng(lat, lng);
+
+            map.panTo(latLng);
+            map.setZoom(14);
+
+            if (openedInfoWindow) {
+                openedInfoWindow.close();
+            }
+
+            infowindows[index].open(map, markers[index]);
+            openedInfoWindow = infowindows[index];
         }
     </script>
 
@@ -76,12 +100,19 @@
 
     <p>&nbsp;</p>
 
+    <div class="text-center hidden-print">
+        <button onclick="window.print()" class="btn btn-primary"><i class="fa fa-print"></i> - Распечатать список АЗС</button>
+    </div>
+
+    <p class="hidden-print">&nbsp;</p>
+
     <table class="table">
         <thead>
             <tr>
                 <th>Место расположения</th>
                 <th>Наименование АЗС</th>
                 <th>Адрес</th>
+                <th>&nbsp;</th>
             </tr>
         </thead>
         <tbody>
@@ -93,9 +124,18 @@
                         {!! $value->description ? "<div class='small'>".$value->description.'</div>' : '' !!}
                     </td>
                     <td>{{ $value->address }}</td>
+                    <td style="width: 101px;">
+                        @if ($value->lat && $value->lng)
+                            <button onclick="showAzsOnMap('{{  $value->lat }}', '{{  $value->lng }}', {{ $value->id }})" class="btn btn-default"><i class="fa fa-map-marker"></i> карта</button>
+                        @endif
+                    </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
+
+    <div class="text-center hidden-print">
+        <button onclick="window.print()" class="btn btn-primary"><i class="fa fa-print"></i> - Распечатать список АЗС</button>
+    </div>
 
 @endsection

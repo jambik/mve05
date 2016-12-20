@@ -75,7 +75,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-md-4">
-                <div class="list-group">
+                <div class="list-group hidden-print">
                     <a href="/" class="list-group-item">Главная</a>
                     <a href="{{ route('page.show', 'about') }}" class="list-group-item">О компании</a>
                     <a href="{{ route('azs') }}" class="list-group-item">Список АЗС</a>
