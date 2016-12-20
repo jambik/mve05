@@ -112,7 +112,7 @@
                 <th>Место расположения</th>
                 <th>Наименование АЗС</th>
                 <th>Адрес</th>
-                <th>&nbsp;</th>
+                <th class="hidden-print">&nbsp;</th>
             </tr>
         </thead>
         <tbody>
@@ -124,7 +124,7 @@
                         {!! $value->description ? "<div class='small'>".$value->description.'</div>' : '' !!}
                     </td>
                     <td>{{ $value->address }}</td>
-                    <td style="width: 101px;">
+                    <td style="width: 101px;" class="hidden-print">
                         @if ($value->lat && $value->lng)
                             <button onclick="showAzsOnMap('{{  $value->lat }}', '{{  $value->lng }}', {{ $value->id }})" class="btn btn-default"><i class="fa fa-map-marker"></i> карта</button>
                         @endif
