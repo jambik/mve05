@@ -8,7 +8,9 @@
     @include('partials._status')
     @include('partials._errors')
 
-    <h1>Список АЗС, партнеров MVE, принимающих талоны компании MVE</h1>
+    <h1 class="text-center">
+        Список АЗС,<br> партнеров MVE,<br> принимающих талоны компании MVE
+    </h1>
 
     <a name="map"></a>
     <div id="map" style="width: 100%; height: 500px;" class="hidden-print"></div>
@@ -106,7 +108,7 @@
 
     <p class="hidden-print">&nbsp;</p>
 
-    <table class="table">
+    <table class="table" style="font-size: 130%;">
         <thead>
             <tr>
                 <th>Место расположения</th>
